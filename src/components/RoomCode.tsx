@@ -1,0 +1,24 @@
+import { useCallback } from "react";
+
+import copyImg from "../assets/images/copyImg.svg";
+
+interface RoomCodeProps {
+  code: string;
+}
+
+export function RoomCode(props: RoomCodeProps) {
+  const { code } = props;
+
+  const copyRoomCodeToClipboard = useCallback(() => {
+    navigator.clipboard.writeText(code);
+  }, [code]);
+
+  return (
+    <button onClick={copyRoomCodeToClipboard} className="room-code">
+      <div>
+        <img src={copyImg} alt="Copy room code" />
+      </div>
+      <span>Sala {code}</span>
+    </button>
+  );
+}
